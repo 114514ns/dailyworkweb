@@ -1,0 +1,14 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    flex-direction: column;
+}
+.container {
+    width: 50vw;
+    height: 50vh;
+}
+.element {
+    margin-top: 15px;
+}
