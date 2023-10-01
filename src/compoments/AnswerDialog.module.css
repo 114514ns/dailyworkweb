@@ -1,0 +1,25 @@
+.dialogRoot {
+    overflow: hidden;
+}
+.left {
+    float: left;
+    width: 30%;
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+    max-height: 300px;
+    align-items: center;
+}
+.right {
+    float: right;
+    width: 70%;
+}
+.avatar {
+    width: 5vw;
+    height: 5vw;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}

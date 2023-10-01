@@ -26,9 +26,9 @@ axios.interceptors.request.use(config => {
     }
     return config;
 }, function (error) {
-    localStorage.clear()
-    console.log("请求失败")
-    location.replace("http://" + location.host)
+    //localStorage.clear()
+    console.log(error)
+    //location.replace("http://" + location.host)
     return Promise.reject(error);
 });
 axios.interceptors.response.use(function (response) {
@@ -42,8 +42,9 @@ axios.interceptors.response.use(function (response) {
     if (error.code === "ERR_BAD_REQUEST") {
         console.log("Token过期")
         console.log(location.hostname)
-        localStorage.clear()
-        location.replace(`${location.protocol}//${location.host}/login`)
+        console.log(error)
+        //localStorage.clear()
+        //location.replace(`${location.protocol}//${location.host}/login`)
     }
 
     return Promise.reject(error);

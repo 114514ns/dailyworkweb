@@ -12,8 +12,9 @@ import {
     ModalFooter,
     ModalHeader,
     Pagination,
-    Skeleton, useDisclosure
+    useDisclosure
 } from "@nextui-org/react";
+import AnswerDialog from "../compoments/AnswerDialog.jsx";
 
 
 function WorkListPage(props) {
@@ -24,12 +25,11 @@ function WorkListPage(props) {
     const location = useLocation();
     const [isLoading, setLoading] = useState(true)
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const springs = useSpring({
+    useSpring({
         from: {x: 0},
         to: {x: 100},
-    })
+    });
     useEffect(() => {
-        console.log("executed")
         setLoading(true)
         axios({
             url: 'https://lulu.lulufind.com/mrzy/mrzypc/findWorkNewVersion',
@@ -103,7 +103,7 @@ function WorkListPage(props) {
                         return (v < 12 ? (
                             <React.Fragment key={key.workId}>
                                 <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.9}} style={scaleX} >
-                                    <WorkCard className={classes.card} content={key.workDetail} time={key.workTime} icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`} subject={getType(key.workType)} onClick={onOpen}/>
+                                    <WorkCard className={classes.card} content={key.workDetail} time={key.workTime} icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`} subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
                                 </motion.div>
                             </React.Fragment>
                         ) : null);
@@ -147,30 +147,17 @@ function WorkListPage(props) {
                             <>
                                 <ModalHeader className="flex flex-col gap-1">作业详情</ModalHeader>
                                 <ModalBody>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Nullam pulvinar risus non risus hendrerit venenatis.
-                                        Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Nullam pulvinar risus non risus hendrerit venenatis.
-                                        Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                                    </p>
-                                    <p>
-                                        Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                                        dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                                        Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                                        Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                                        proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                                    </p>
+                                    <AnswerDialog/>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button color="danger" variant="light" onPress={onClose}>
-                                        Close
+                                        关闭
                                     </Button>
                                     <Button color="primary" onPress={onClose}>
-                                        Action
+                                        删除作业
+                                    </Button>
+                                    <Button color="primary" onPress={onClose}>
+                                        修改作业
                                     </Button>
                                 </ModalFooter>
                             </>

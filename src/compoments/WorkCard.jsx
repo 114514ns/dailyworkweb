@@ -9,10 +9,10 @@ function WorkCard(props) {
     return (
         <div className={`max-w-[400px] ${props.className}`}>
             <Card
-                  shadow={'lg'}
-                  style={{
-                      backdropFilter : 'blur(10px)'
-                  }}
+                shadow={'lg'}
+                style={{
+                    backdropFilter: 'blur(10px)'
+                }}
                 //isPressable={true}
             >
                 <CardHeader className="flex gap-3">
@@ -39,11 +39,22 @@ function WorkCard(props) {
                         isBlock={true}
                         showAnchorIcon
                         onPress={props.onClick}
+                        onClick={event => {
+                            window.workId = props.workId
+                        }}
                     >
                         查看详情
                     </Link>
                 </CardFooter>
-                <div style={{ backgroundImage: 'url(image.jpg)', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1 }}></div>
+                <div style={{
+                    backgroundImage: 'url(image.jpg)',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: -1
+                }}></div>
             </Card>
         </div>
     );
