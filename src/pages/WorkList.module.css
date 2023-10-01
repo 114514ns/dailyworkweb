@@ -1,0 +1,29 @@
+.root {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    margin-left: 25px;
+    justify-content: center;
+    margin-bottom: 300px;
+}
+
+.card {
+    margin: 25px;
+    width: 544px;
+
+}
+.dialog {
+    width: 70vw;
+}
+@media screen {
+    .card {
+        margin: 25px;
+        width: 544px;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .card {
+        width: 90vw;
+    }
+}
+
