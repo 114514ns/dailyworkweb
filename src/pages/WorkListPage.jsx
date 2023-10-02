@@ -120,7 +120,7 @@ function WorkListPage(props) {
                     isOpen={isOpen}
                     className={classes.dialog}
                     onOpenChange={onOpenChange}
-                    size={'4xl'}
+                    size={'5xl'}
                     motionProps={{
                         variants: {
                             enter: {

@@ -39,22 +39,16 @@ function WorkCard(props) {
                         isBlock={true}
                         showAnchorIcon
                         onPress={props.onClick}
-                        onClick={event => {
+                        onPressStart={() => {
                             window.workId = props.workId
+                            //这方法是不是有点奇怪？我只能写出这样的代码了
+                            //经过测试 设置workId会比发送请求提前50-100ms
+                            //console.log("click:" + new Date().getMilliseconds())
                         }}
                     >
                         查看详情
                     </Link>
                 </CardFooter>
-                <div style={{
-                    backgroundImage: 'url(image.jpg)',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: -1
-                }}></div>
             </Card>
         </div>
     );
