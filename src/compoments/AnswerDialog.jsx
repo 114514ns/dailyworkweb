@@ -40,17 +40,17 @@ function AnswerDialog(props) {
                 })}
             </div>
             <div className={classes.right}>
-                {images & images.map(key => {
+                {images?images.map(key => {
+                    console.log(key)
                     return <Image
-                        isBlurred
-                        key={key}
-                        height={240}
-                        width={240}
                         src={key}
-                        alt="NextUI Album Cover"
-                        classNames="m-5"
-                    />
-                })}
+                        className={classes.image}
+                        isZoomed
+                        key={key}
+                    >
+
+                    </Image>
+                }):<div/>}
             </div>
         </div>
     );

@@ -7,12 +7,17 @@
     display: flex;
     overflow: scroll;
     flex-direction: column;
-    max-height: 300px;
+    max-height: 800px;
     align-items: center;
 }
 .right {
     float: right;
     width: 70%;
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+    max-height: 800px;
+    align-items: center;
 }
 .avatar {
     width: 5vw;
@@ -22,4 +27,7 @@
 }
 ::-webkit-scrollbar {
     display: none; /* Chrome Safari */
+}
+.image {
+    margin: 25px;
 }
