@@ -62,11 +62,23 @@ class LoginPage extends Component {
                     localStorage.setItem("phone",phone)
                     localStorage.setItem("password",password)
                     localStorage.setItem("avatar",res.data.data.accounts[0].user.userAvatar)
-                    console.log("ok")
                     this.setState({
                         redirect:true
                     })
                     toast.success('🦄 登录成功', {
+                        position: "top-right",
+                        autoClose: 1900,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        //transition:{Zoom},
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+                } else {
+                    console.log("Password wrong")
+                    toast.error('🦄 密码错误', {
                         position: "top-right",
                         autoClose: 1900,
                         hideProgressBar: false,

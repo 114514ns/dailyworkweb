@@ -8,6 +8,7 @@ import axios from "axios";
 import md5 from 'js-md5';
 import {toast} from "react-toastify";
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <NextUIProvider>
         <BrowserRouter>

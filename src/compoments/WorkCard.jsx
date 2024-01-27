@@ -28,11 +28,11 @@ function WorkCard(props) {
                         <p className="text-small text-default-500">{props.time}</p>
                     </div>
                 </CardHeader>
-                <Divider/>
+                <Divider className={classes.divider}/>
                 <CardBody>
                     <p>{props.content}</p>
                 </CardBody>
-                <Divider/>
+                <Divider className={classes.divider}/>
                 <CardFooter>
                     <Link
                         isExternal

@@ -18,7 +18,6 @@ import AnswerDialog from "../compoments/AnswerDialog.jsx";
 import * as PropTypes from "prop-types";
 
 
-
 function LockIcon(props) {
     return null;
 }
@@ -39,6 +38,7 @@ function WorkListPage(props) {
     const location = useLocation();
     const [isLoading, setLoading] = useState(true)
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    //const {isOpen2, onOpen2, onOpenChange2} = useDisclosure();
     const {isOpen2, onOpen2, onOpenChange2} = useDisclosure();
     const dates = [];
     var today = new Date(); // 获取当前日期
@@ -131,19 +131,15 @@ function WorkListPage(props) {
         return value;
     }
     return (
-        <AnimatePresence>
-            <motion.div
-                className={`${classes.root} animate__fadeInDown`}
-                initial={{opacity: '0'}}
-                animate={{opacity: '100%'}}
-                exit={{opacity: '0'}}
+            <div
+                className={`${classes.root} `}
             >
                 {(
                     response.map((key, v) => {
                         return (v < 12 ? (
-                            <React.Fragment key={key.workId}>
+                            <React.Fragment key={key.workId} >
                                 <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.9}} style={scaleX}>
-                                    <WorkCard className={classes.card} content={key.workDetail} time={key.workTime}
+                                    <WorkCard className={`${classes.card} animate__fadeIn animate__animated` } content={key.workDetail} time={key.workTime}
                                               icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
                                               subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
                                 </motion.div>
@@ -198,7 +194,7 @@ function WorkListPage(props) {
                                     <Button color="primary" onPress={onClose}>
                                         删除作业
                                     </Button>
-                                    <Button color="primary" onPress={e => {
+                                    <Button color="primary" onPress={() => {
                                         const currentDate = new Date();
                                         const year = currentDate.getFullYear();
                                         const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -212,7 +208,7 @@ function WorkListPage(props) {
                                                 window.workDetail = ele.workDetail
                                             }
                                         })
-
+                                        /*
                                         axios({
                                             url: 'https://lulu.lulufind.com/mrzy/mrzypc/updateWork',
                                             method: 'post',
@@ -223,10 +219,11 @@ function WorkListPage(props) {
 
                                             }
                                         })
+                                        */
                                         console.log(window.workId)
                                         console.log(window.workDetail)
                                         console.log(formattedDate)
-                                    }}
+                                    }} onClick={onOpen2}
                                     >
                                         修改作业
                                     </Button>
@@ -237,11 +234,11 @@ function WorkListPage(props) {
                 </Modal>
                 <>
                     <>
-                        <Button onPress={onOpen2} color="primary">Open Modal</Button>
+
                         <Modal
-                            isOpen={true}
+                            isOpen={isOpen2}
                             onOpenChange={onOpenChange2}
-                            placement="top-center"
+                            placement="center"
                         >
                             <ModalContent>
                                 {(onClose2) => (
@@ -291,9 +288,7 @@ function WorkListPage(props) {
                         </Modal>
                     </>
                 </>
-            </motion.div>
-
-        </AnimatePresence>
+            </div>
     );
 
 }
