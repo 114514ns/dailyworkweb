@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from "./AnswerDialog.module.css";
-import {Avatar, Tooltip} from "@nextui-org/react";
+import { Avatar, Button, Input, Select, SelectItem, Switch, Tooltip } from "@nextui-org/react";
 import axios from "axios";
-import {Image} from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 function AnswerDialog(props) {
-    const [res,setRes] = useState("")
+    function LockIcon(props) {
+        return null;
+    }
+    const [res, setRes] = useState("")
     useEffect(() => {
         //console.log("fetch:" + new Date().getMilliseconds())
         axios({
@@ -18,7 +21,7 @@ function AnswerDialog(props) {
             console.log(response.data.data)
         })
     }, []);
-    const [images,setImages] = useState([])
+    const [images, setImages] = useState([])
     return (
         <div className={classes.dialogRoot}>
             <div className={classes.left}>
@@ -40,17 +43,59 @@ function AnswerDialog(props) {
                 })}
             </div>
             <div className={classes.right}>
-                {images?images.map(key => {
-                    console.log(key)
-                    return <Image
-                        src={key}
-                        className={classes.image}
-                        isZoomed
-                        key={key}
-                    >
+                <div className={classes.leftRight}>
+                    {images ? images.map(key => {
+                        //console.log(key)
+                        return <Image
+                            src={key}
+                            className={classes.image}
+                            isZoomed
+                            key={key}
+                        >
 
-                    </Image>
-                }):<div/>}
+                        </Image>
+                    }) : <div />}
+                </div>
+                <div className={classes.rightRight}>
+                    <Input
+                        label="作业id"
+                        value={window.workId}
+                        variant="bordered"
+                        disabled
+                        className={`${classes.margin}`}
+                    />
+                    <Input
+                        endContent={
+                            <LockIcon
+                                className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                        }
+                        label="作业内容"
+                        value={window.workDetail}
+                        variant="bordered"
+                        className={`${classes.margin}`}
+                    />
+                    <Select
+                        label="截至时间"
+                        className={`max-w-xs ${classes.margin}`}
+                    >
+                        {props.dates.map(key => {
+                            return <SelectItem key={key.value} value={key.value}>
+                                {key.label}
+                            </SelectItem>
+                        })}
+                    </Select>
+                    <Switch defaultSelected
+                        className={`${classes.margin}`}
+                    >
+                        允许补交
+                    </Switch>
+                    <Button color="danger" variant="flat" onPress={() => { }} className={`${classes.margin}`}>
+                        取消
+                    </Button>
+                    <Button color="primary" onPress={() => { }} className={`${classes.margin}`}>
+                        确认修改
+                    </Button>
+                </div>
             </div>
         </div>
     );

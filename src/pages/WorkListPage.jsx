@@ -141,6 +141,7 @@ function WorkListPage(props) {
                                 <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.9}} style={scaleX}>
                                     <WorkCard className={`${classes.card} animate__fadeIn animate__animated` } content={key.workDetail} time={key.workTime}
                                               icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
+                                              dates={dates}
                                               subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
                                 </motion.div>
                             </React.Fragment>
@@ -185,7 +186,7 @@ function WorkListPage(props) {
                             <>
                                 <ModalHeader className="flex flex-col gap-1">作业详情</ModalHeader>
                                 <ModalBody>
-                                    <AnswerDialog/>
+                                    <AnswerDialog dates={dates}/>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button color="danger" variant="light" onPress={onClose}>

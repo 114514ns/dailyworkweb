@@ -13,11 +13,23 @@
 .right {
     float: right;
     width: 70%;
+    max-height: 800px;
+}
+.leftRight {
+    width: 100%;
     display: flex;
     overflow: scroll;
     flex-direction: column;
     max-height: 800px;
+    align-items: flex-start;
+    float: left;
+
+}
+.rightRight {
+    display: flex;
     align-items: center;
+    flex-direction: column;
+    width: 50%;
 }
 .avatar {
     width: 5vw;
@@ -30,4 +42,7 @@
 }
 .image {
     margin: 25px;
+}
+.margin {
+    margin: 15px;
 }
