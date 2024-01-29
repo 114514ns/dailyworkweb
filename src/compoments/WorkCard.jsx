@@ -41,6 +41,7 @@ function WorkCard(props) {
                         onPress={props.onClick}
                         onPressStart={() => {
                             window.workId = props.workId
+                            window.workDetail = props.content
                             //这方法是不是有点奇怪？我只能写出这样的代码了
                             //经过测试 设置workId会比发送请求提前50-100ms
                             //console.log("click:" + new Date().getMilliseconds())

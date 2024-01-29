@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./AnswerDialog.module.css";
-import { Avatar, Button, Input, Select, SelectItem, Switch, Tooltip } from "@nextui-org/react";
+import {Avatar, Button, Input, Select, SelectItem, Switch, Textarea, Tooltip} from "@nextui-org/react";
 import axios from "axios";
-import { Image } from "@nextui-org/react";
+import {Image} from "@nextui-org/react";
+
 function AnswerDialog(props) {
     function LockIcon(props) {
         return null;
     }
+
     const [res, setRes] = useState("")
     useEffect(() => {
         //console.log("fetch:" + new Date().getMilliseconds())
@@ -21,6 +23,7 @@ function AnswerDialog(props) {
             console.log(response.data.data)
         })
     }, []);
+    const [clicked, setClicked] = useState(false)
     const [images, setImages] = useState([])
     return (
         <div className={classes.dialogRoot}>
@@ -30,6 +33,7 @@ function AnswerDialog(props) {
                         //console.log(k.userRealName)
                         return <Tooltip content={k.userRealName} key={k.openId}>
                             <Avatar src={k.userAvatar} className={classes.avatar} onClick={() => {
+                                setClicked(true)
                                 res.submitUser.forEach((key) => {
                                     if (key.submitId == k.submitId) {
                                         setImages(key.submitCover.split("|"))
@@ -49,14 +53,13 @@ function AnswerDialog(props) {
                         return <Image
                             src={key}
                             className={classes.image}
-                            isZoomed
                             key={key}
                         >
 
                         </Image>
-                    }) : <div />}
+                    }) : <div/>}
                 </div>
-                <div className={classes.rightRight}>
+                <div className={`${classes.right} ${clicked?classes.hide:''}`}>
                     <Input
                         label="作业id"
                         value={window.workId}
@@ -64,15 +67,15 @@ function AnswerDialog(props) {
                         disabled
                         className={`${classes.margin}`}
                     />
-                    <Input
+                    <Textarea
                         endContent={
                             <LockIcon
-                                className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                                className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
                         }
                         label="作业内容"
                         value={window.workDetail}
                         variant="bordered"
-                        className={`${classes.margin}`}
+                        //className={`${classes.margin}`}
                     />
                     <Select
                         label="截至时间"
@@ -85,16 +88,21 @@ function AnswerDialog(props) {
                         })}
                     </Select>
                     <Switch defaultSelected
-                        className={`${classes.margin}`}
+                            className={`${classes.margin}`}
                     >
                         允许补交
                     </Switch>
-                    <Button color="danger" variant="flat" onPress={() => { }} className={`${classes.margin}`}>
-                        取消
-                    </Button>
-                    <Button color="primary" onPress={() => { }} className={`${classes.margin}`}>
-                        确认修改
-                    </Button>
+                    <div className={classes.btns}>
+                        <Button color="danger" variant="flat" onPress={() => {
+                        }} className={`${classes.margin}`}>
+                            取消
+                        </Button>
+                        <Button color="primary" onPress={() => {
+
+                        }} className={`${classes.margin}`} variant={"flat"}>
+                            确认修改
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import classes from './App.module.css'
 import '/style.css'
-import '/dist/output.css'
+import '/src/dist/output.css'
 import {AnimatePresence, motion, MotionConfig, useMotionValue} from "framer-motion";
 import {
     Avatar,

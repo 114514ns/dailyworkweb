@@ -192,39 +192,12 @@ function WorkListPage(props) {
                                     <Button color="danger" variant="light" onPress={onClose}>
                                         关闭
                                     </Button>
-                                    <Button color="primary" onPress={onClose}>
+                                    <Button color="primary" onPress={onClose} variant={'light'}>
                                         删除作业
                                     </Button>
                                     <Button color="primary" onPress={() => {
-                                        const currentDate = new Date();
-                                        const year = currentDate.getFullYear();
-                                        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-                                        const day = currentDate.getDate().toString().padStart(2, '0');
-                                        const hours = '00';
-                                        const minutes = '00';
-                                        const seconds = '00';
-                                        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-                                        response.forEach(ele => {
-                                            if (ele.workId == window.workId) {
-                                                window.workDetail = ele.workDetail
-                                            }
-                                        })
-                                        /*
-                                        axios({
-                                            url: 'https://lulu.lulufind.com/mrzy/mrzypc/updateWork',
-                                            method: 'post',
-                                            params: {
-                                                workId: window.workId,
-                                                workRemark: formattedDate,
 
-
-                                            }
-                                        })
-                                        */
-                                        console.log(window.workId)
-                                        console.log(window.workDetail)
-                                        console.log(formattedDate)
-                                    }} onClick={onOpen2}
+                                    }} onClick={onOpen2} variant={'light'}
                                     >
                                         修改作业
                                     </Button>
@@ -233,62 +206,6 @@ function WorkListPage(props) {
                         )}
                     </ModalContent>
                 </Modal>
-                <>
-                    <>
-
-                        <Modal
-                            isOpen={isOpen2}
-                            onOpenChange={onOpenChange2}
-                            placement="center"
-                        >
-                            <ModalContent>
-                                {(onClose2) => (
-                                    <>
-                                        <ModalHeader className="flex flex-col gap-1">修改作业</ModalHeader>
-                                        <ModalBody>
-                                            <Input
-                                                label="作业id"
-                                                value={window.workId}
-                                                variant="bordered"
-                                                disabled
-                                            />
-                                            <Input
-                                                endContent={
-                                                    <LockIcon
-                                                        className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
-                                                }
-                                                label="作业内容"
-                                                value={window.workDetail}
-                                                variant="bordered"
-                                            />
-                                            <Select
-                                                label="截至时间"
-                                                className="max-w-xs"
-                                            >
-                                                {dates.map(key => {
-                                                    return <SelectItem key={key.value} value={key.value}>
-                                                        {key.label}
-                                                    </SelectItem>
-                                                })}
-                                            </Select>
-                                            <Switch defaultSelected>
-                                                允许补交
-                                            </Switch>
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button color="danger" variant="flat" onPress={onClose2}>
-                                                取消
-                                            </Button>
-                                            <Button color="primary" onPress={onClose2}>
-                                                确认修改
-                                            </Button>
-                                        </ModalFooter>
-                                    </>
-                                )}
-                            </ModalContent>
-                        </Modal>
-                    </>
-                </>
             </div>
     );
 

@@ -3,7 +3,7 @@
 }
 .left {
     float: left;
-    width: 30%;
+    width: 20%;
     display: flex;
     overflow: scroll;
     flex-direction: column;
@@ -12,37 +12,39 @@
 }
 .right {
     float: right;
-    width: 70%;
     max-height: 800px;
-}
-.leftRight {
-    width: 100%;
+    width: 80%;
     display: flex;
     overflow: scroll;
     flex-direction: column;
-    max-height: 800px;
     align-items: flex-start;
-    float: left;
-
-}
-.rightRight {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
 }
 .avatar {
     width: 5vw;
     height: 5vw;
     margin-bottom: 15px;
     flex-shrink: 0;
+    border-color: brown;
 }
 ::-webkit-scrollbar {
     display: none; /* Chrome Safari */
 }
 .image {
     margin: 25px;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 90%;
 }
 .margin {
     margin: 15px;
+}
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+}
+.hide {
+    display: none;
 }
