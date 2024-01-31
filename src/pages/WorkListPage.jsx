@@ -138,12 +138,12 @@ function WorkListPage(props) {
                     response.map((key, v) => {
                         return (v < 12 ? (
                             <React.Fragment key={key.workId} >
-                                <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 0.9}} style={scaleX}>
+                                <div>
                                     <WorkCard className={`${classes.card} animate__fadeIn animate__animated` } content={key.workDetail} time={key.workTime}
                                               icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
                                               dates={dates}
                                               subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
-                                </motion.div>
+                                </div>
                             </React.Fragment>
                         ) : null);
                     })
@@ -191,15 +191,6 @@ function WorkListPage(props) {
                                 <ModalFooter>
                                     <Button color="danger" variant="light" onPress={onClose}>
                                         关闭
-                                    </Button>
-                                    <Button color="primary" onPress={onClose} variant={'light'}>
-                                        删除作业
-                                    </Button>
-                                    <Button color="primary" onPress={() => {
-
-                                    }} onClick={onOpen2} variant={'light'}
-                                    >
-                                        修改作业
                                     </Button>
                                 </ModalFooter>
                             </>

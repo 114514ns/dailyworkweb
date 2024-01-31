@@ -12,6 +12,7 @@
     width: 544px;
 
 }
+
 .dialog {
     width: 70vw;
 }
@@ -19,6 +20,10 @@
     .card {
         margin: 25px;
         width: 544px;
+    }
+    .card:hover {
+        transition: height 0.2s ease-in-out;
+        border-color: #f52baf;
     }
 }
 @media only screen and (max-width: 767px) {

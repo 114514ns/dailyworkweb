@@ -64,11 +64,14 @@
 
 .topNav {
     height: 5vh;
-    width: 100vw;
+    width: 25vw;
     position: absolute;
     top: 1vh;
     left: 0;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .avatarRoot {

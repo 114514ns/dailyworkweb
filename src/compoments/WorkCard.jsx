@@ -30,7 +30,7 @@ function WorkCard(props) {
                 </CardHeader>
                 <Divider className={classes.divider}/>
                 <CardBody>
-                    <p>{props.content}</p>
+                    <p style={{whiteSpace:"pre-wrap"}}>{props.content}</p>
                 </CardBody>
                 <Divider className={classes.divider}/>
                 <CardFooter>
