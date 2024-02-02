@@ -2,3 +2,15 @@
     width: 75%;
     margin-left: 5%;
 }
+.redBorder {
+    border-color: #f67676;
+    border-style: solid;
+    box-shadow: 3px 3px 5px #f67676;
+    border-width: 3px;
+}
+.greenBorder {
+    border-color: #9cff88;
+    border-style: solid;
+    border-width: 3px;
+    box-shadow: 3px 3px 5px #9cff88;
+}

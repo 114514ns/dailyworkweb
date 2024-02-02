@@ -141,6 +141,7 @@ function WorkListPage(props) {
                                 <div>
                                     <WorkCard className={`${classes.card} animate__fadeIn animate__animated` } content={key.workDetail} time={key.workTime}
                                               icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
+                                              submit={key.submit}
                                               dates={dates}
                                               subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
                                 </div>

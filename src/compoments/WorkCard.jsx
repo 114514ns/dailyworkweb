@@ -13,6 +13,8 @@ function WorkCard(props) {
                 style={{
                     backdropFilter: 'blur(10px)'
                 }}
+                className={props.submit===1?classes.greenBorder:classes.redBorder}
+
                 //isPressable={true}
             >
                 <CardHeader className="flex gap-3">
@@ -30,7 +32,7 @@ function WorkCard(props) {
                 </CardHeader>
                 <Divider className={classes.divider}/>
                 <CardBody>
-                    <p style={{whiteSpace:"pre-wrap"}}>{props.content}</p>
+                    <p style={{whiteSpace: "pre-wrap"}}>{props.content}</p>
                 </CardBody>
                 <Divider className={classes.divider}/>
                 <CardFooter>
