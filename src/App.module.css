@@ -44,9 +44,12 @@
 }
 
 .navBtn {
-    margin: 10px;
+    margin: 5px;
 }
-
+.appRoot {
+    animation-name: logo-spin;
+    animation-direction: 500ms;
+}
 .avatar {
 
     position: fixed;
@@ -61,11 +64,14 @@
     left: 0;
 
 }
+.btns {
 
+}
 .topNav {
     height: 5vh;
     width: 25vw;
     position: absolute;
+    margin-top: 5px;
     top: 1vh;
     left: 0;
     display: flex;

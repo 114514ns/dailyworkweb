@@ -21,19 +21,20 @@ function AnswerDialog(props) {
         }).then(response => {
             setRes(response.data.data)
             console.log(response.data.data)
+            window.classId = response.data.data.workClass
         })
     }, []);
-    const [clicked, setClicked] = useState(false)
+    const [clicked, setClicked] = useState(0)
     const [images, setImages] = useState([])
     return (
-        <div className={classes.dialogRoot}>
+        <div className={classes.dialogRoot + ''}>
             <div className={classes.left}>
                 {res && res.submitUser.map((k) => {
                     if (k.submitId) {
                         //console.log(k.userRealName)
                         return <Tooltip content={k.userRealName} key={k.openId}>
-                            <Avatar src={k.userAvatar} className={classes.avatar} onClick={() => {
-                                setClicked(true)
+                            <Avatar src={k.userAvatar} className={`${classes.avatar}  ${k.userAvatar===clicked?classes.selected:''}`} onClick={() => {
+                                setClicked(k.userAvatar)
                                 res.submitUser.forEach((key) => {
                                     if (key.submitId == k.submitId) {
                                         setImages(key.submitCover.split("|"))
@@ -46,64 +47,18 @@ function AnswerDialog(props) {
                     }
                 })}
             </div>
-            <div className={classes.right}>
-                <div className={classes.leftRight}>
-                    {images ? images.map(key => {
-                        //console.log(key)
-                        return <Image
-                            src={key}
-                            className={classes.image}
-                            key={key}
-                        >
-
-                        </Image>
-                    }) : <div/>}
-                </div>
-                <div className={`${classes.right} ${clicked?classes.hide:''}`}>
-                    <Input
-                        label="作业id"
-                        value={window.workId}
-                        variant="bordered"
-                        disabled
-                        className={`${classes.margin}`}
-                    />
-                    <Textarea
-                        endContent={
-                            <LockIcon
-                                className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
-                        }
-                        label="作业内容"
-                        value={window.workDetail}
-                        variant="bordered"
-                        //className={`${classes.margin}`}
-                    />
-                    <Select
-                        label="截至时间"
-                        className={`max-w-xs ${classes.margin}`}
+            <div className={res.cardId?classes.rightExcel:classes.right + ''}>
+                {res.cardId ? <iframe
+                    src={`https://view.officeapps.live.com/op/view.aspx?src=https://lulu.pprocket.cn/card/${window.classId}and${res.cardId}`}
+                    className={classes.excel}></iframe> : images ? images.map(key => {
+                    //console.log(key)
+                    return <Image
+                        src={key}
+                        className={classes.image + ''}
+                        key={key}
                     >
-                        {props.dates.map(key => {
-                            return <SelectItem key={key.value} value={key.value}>
-                                {key.label}
-                            </SelectItem>
-                        })}
-                    </Select>
-                    <Switch defaultSelected
-                            className={`${classes.margin}`}
-                    >
-                        允许补交
-                    </Switch>
-                    <div className={classes.btns}>
-                        <Button color="danger" variant="flat" onPress={() => {
-                        }} className={`${classes.margin}`}>
-                            取消
-                        </Button>
-                        <Button color="primary" onPress={() => {
-
-                        }} className={`${classes.margin}`} variant={"flat"}>
-                            确认修改
-                        </Button>
-                    </div>
-                </div>
+                    </Image>
+                }) : <div/>}
             </div>
         </div>
     );

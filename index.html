@@ -13,9 +13,11 @@
     />
 
 </head>
-<body>
+<body data-barba="wrapper">
 <div id="root"></div>
-<script type="module" src="/src/main.jsx"></script>
+<main data-barba="container" data-barba-namespace="home">
+    <script type="module" src="/src/main.jsx"></script>
+</main>
 </body>
 <style>
     html {
@@ -25,4 +27,7 @@
         background-size: cover;
     }
 </style>
+<script>
+
+</script>
 </html>

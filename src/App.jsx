@@ -7,14 +7,15 @@ import {
     Avatar,
     Dropdown, DropdownItem, DropdownMenu,
     DropdownTrigger,
-    Link
+    Link,
+    Button
 } from "@nextui-org/react";
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
 import WorkListPage from "./pages/WorkListPage.jsx";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {ToastContainer, Zoom} from "react-toastify";
-
+import barba from '@barba/core';
 function App() {
     const [count, setCount] = useState(0)
 
@@ -30,22 +31,39 @@ function App() {
     ];
 
     const location = useLocation();
+    barba.init({
+        transitions: [{
+            name: 'opacity-transition',
+            leave(data) {
+                return gsap.to(data.current.container, {
+                    opacity: 0
+                });
+            },
+            enter(data) {
+                return gsap.from(data.next.container, {
+                    opacity: 0
+                });
+            }
+        }]
+    });
     return (
         <>
             <div className='appRoot'>
                 <div className={classes.topNav}>
-                    <Link className={classes.navBtn} isBlock={true}>
-                        首页
-                    </Link>
-                    <Link className={classes.navBtn} isBlock={true} href={'/list/1'}>
-                        作业
-                    </Link>
-                    <Link className={classes.navBtn} isBlock={true}>
-                        网盘
-                    </Link>
-                    <Link className={classes.navBtn} href={'/login'} isBlock={true}>
-                        登录
-                    </Link>
+                    <div className={''}>
+                        <Button className={classes.navBtn} isBlock={true} as={Link}>
+                            首页
+                        </Button>
+                        <Button className={classes.navBtn} isBlock={true} href={'/list/1'} as={Link}>
+                            作业
+                        </Button>
+                        <Button className={classes.navBtn} isBlock={true} as={Link}>
+                            网盘
+                        </Button>
+                        <Button className={classes.navBtn} href={'/login'} isBlock={true} as={Link}>
+                            登录
+                        </Button>
+                    </div>
 
                 </div>
                 <ToastContainer
@@ -63,7 +81,7 @@ function App() {
                 />
                 <ToastContainer/>
                 <div className={classes.avatarRoot}>
-                    <Dropdown backdrop={"blur"}>
+                    <Dropdown>
                         <DropdownTrigger>
                             <Avatar src={localStorage.getItem("avatar")} size="lg"
                                     className={classes.avatar}/>

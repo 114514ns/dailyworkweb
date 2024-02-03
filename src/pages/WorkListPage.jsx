@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classes from './WorkList.module.css'
 import axios from "axios";
 import WorkCard from "../compoments/WorkCard.jsx";
@@ -16,7 +16,8 @@ import {
 } from "@nextui-org/react";
 import AnswerDialog from "../compoments/AnswerDialog.jsx";
 import * as PropTypes from "prop-types";
-
+import {gsap} from 'gsap';
+import ReactDOM from "react-dom/client";
 
 function LockIcon(props) {
     return null;
@@ -63,10 +64,14 @@ function WorkListPage(props) {
         })
         today = tomorrow
     }
-    useSpring({
-        from: {x: 0},
-        to: {x: 100},
-    });
+    const handleMouseEnter = (event) => {
+        gsap.to(event.target, { backgroundColor: 'red', duration: 0.3, ease: 'power1.inOut' });
+    };
+
+
+    const handleMouseLeave = (event) => {
+        gsap.to(event.target, { backgroundColor: 'blue', duration: 0.3, ease: 'power1.inOut' });
+    };
     useEffect(() => {
         setLoading(true)
         window.workId = 114514
@@ -131,74 +136,77 @@ function WorkListPage(props) {
         return value;
     }
     return (
-            <div
-                className={`${classes.root} `}
+        <div
+            className={`${classes.root} `}
+        >
+            {(
+
+                response.map((key, v) => {
+                    window.classId = key.workClass
+                    return (v < 12 ? (
+                        <React.Fragment key={key.workId}>
+                            <div>
+                                <WorkCard className={`${classes.card} animate__fadeIn animate__animated`}
+                                          content={key.workDetail} time={key.workTime}
+                                          icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
+                                          submit={key.submit}
+                                          dates={dates}
+                                          subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
+                            </div>
+                        </React.Fragment>
+                    ) : null);
+                })
+            )}
+            {isLoading ? <div></div> : <Pagination total={10} initialPage={Number(id)}
+                                                   color={"danger"}
+                                                   onChange={page => toManagePage(page)}
+                                                   showControls={true}
+                                                   showShadow={true}
+            />}
+            <Modal
+                backdrop="blur"
+                isOpen={isOpen}
+                className={classes.dialog}
+                onOpenChange={onOpenChange}
+                size={'5xl'}
+                motionProps={{
+                    variants: {
+                        enter: {
+                            y: 0,
+                            opacity: 1,
+                            transition: {
+                                duration: 0.3,
+                                ease: "easeOut",
+                            },
+                        },
+                        exit: {
+                            y: -20,
+                            opacity: 0,
+                            transition: {
+                                duration: 0.2,
+                                ease: "easeIn",
+                            },
+                        },
+                    }
+                }}
             >
-                {(
-                    response.map((key, v) => {
-                        return (v < 12 ? (
-                            <React.Fragment key={key.workId} >
-                                <div>
-                                    <WorkCard className={`${classes.card} animate__fadeIn animate__animated` } content={key.workDetail} time={key.workTime}
-                                              icon={`https://img2.lulufind.com/icon_subject_${key.workType}.png`}
-                                              submit={key.submit}
-                                              dates={dates}
-                                              subject={getType(key.workType)} onClick={onOpen} workId={key.workId}/>
-                                </div>
-                            </React.Fragment>
-                        ) : null);
-                    })
-                )}
-                {isLoading ? <div></div> : <Pagination total={10} initialPage={Number(id)}
-                                                       color={"danger"}
-                                                       onChange={page => toManagePage(page)}
-                                                       showControls={true}
-                                                       showShadow={true}
-                />}
-                <Modal
-                    backdrop="blur"
-                    isOpen={isOpen}
-                    className={classes.dialog}
-                    onOpenChange={onOpenChange}
-                    size={'5xl'}
-                    motionProps={{
-                        variants: {
-                            enter: {
-                                y: 0,
-                                opacity: 1,
-                                transition: {
-                                    duration: 0.3,
-                                    ease: "easeOut",
-                                },
-                            },
-                            exit: {
-                                y: -20,
-                                opacity: 0,
-                                transition: {
-                                    duration: 0.2,
-                                    ease: "easeIn",
-                                },
-                            },
-                        }
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-1">作业详情</ModalHeader>
-                                <ModalBody>
-                                    <AnswerDialog dates={dates}/>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button color="danger" variant="light" onPress={onClose}>
-                                        关闭
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
-            </div>
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">作业详情</ModalHeader>
+                            <ModalBody>
+                                <AnswerDialog dates={dates}/>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    关闭
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
+        </div>
     );
 
 }

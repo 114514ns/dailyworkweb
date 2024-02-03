@@ -3,14 +3,14 @@
     margin-left: 5%;
 }
 .redBorder {
-    border-color: #f67676;
+    border-color: #e83030;
     border-style: solid;
-    box-shadow: 3px 3px 5px #f67676;
+    box-shadow: 3px 3px 5px #e83030;
     border-width: 3px;
 }
 .greenBorder {
-    border-color: #9cff88;
+    border-color: #42e021;
     border-style: solid;
     border-width: 3px;
-    box-shadow: 3px 3px 5px #9cff88;
+    box-shadow: 3px 3px 5px #42e021;
 }
