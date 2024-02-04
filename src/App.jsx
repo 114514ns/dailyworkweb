@@ -10,58 +10,49 @@ import {
     Link,
     Button
 } from "@nextui-org/react";
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
 import WorkListPage from "./pages/WorkListPage.jsx";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {ToastContainer, Zoom} from "react-toastify";
-import barba from '@barba/core';
+
 function App() {
     const [count, setCount] = useState(0)
 
     const items = [
         {
             key: "source",
-            label: "github",
+            label: "源码",
         },
         {
             key: "logout",
             label: "注销",
         },
+        {
+            key: "login",
+            label: "登录"
+        },
+        {
+            key: "work",
+            label: "作业"
+        }
     ];
 
     const location = useLocation();
-    barba.init({
-        transitions: [{
-            name: 'opacity-transition',
-            leave(data) {
-                return gsap.to(data.current.container, {
-                    opacity: 0
-                });
-            },
-            enter(data) {
-                return gsap.from(data.next.container, {
-                    opacity: 0
-                });
-            }
-        }]
-    });
+    const navigate = useNavigate();
     return (
         <>
             <div className='appRoot'>
-                <div className={classes.topNav}>
+                <div className={classes.topNav + `${navigator.userAgent.indexOf('Mobile')===-1?'':classes.hidden}`}>
                     <div className={''}>
-                        <Button className={classes.navBtn} isBlock={true} as={Link}>
-                            首页
+                        <Button className={classes.navBtn} isBlock={true} href={'/list/1'} as={Link} size={'lg'}
+                                radius={'full'}>
+                            作业&nbsp;
                         </Button>
-                        <Button className={classes.navBtn} isBlock={true} href={'/list/1'} as={Link}>
-                            作业
-                        </Button>
-                        <Button className={classes.navBtn} isBlock={true} as={Link}>
-                            网盘
-                        </Button>
-                        <Button className={classes.navBtn} href={'/login'} isBlock={true} as={Link}>
+                        <Button className={classes.navBtn} href={'/login'} isBlock={true} as={Link} size={'lg'}
+                                radius={'full'}>
                             登录
+
                         </Button>
                     </div>
 
@@ -93,6 +84,15 @@ function App() {
                                 switch (key) {
                                     case "source": {
                                         window.open('https://github.com/114514ns/dailyworkweb')
+                                        return
+                                    }
+                                    case "work": {
+                                        navigate('/list/1')
+                                        return;
+                                    }
+                                    case "login": {
+                                        navigate('/login')
+                                        return;
                                     }
                                 }
                             }}

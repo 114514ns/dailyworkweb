@@ -16,7 +16,6 @@ import {
 } from "@nextui-org/react";
 import AnswerDialog from "../compoments/AnswerDialog.jsx";
 import * as PropTypes from "prop-types";
-import {gsap} from 'gsap';
 import ReactDOM from "react-dom/client";
 
 function LockIcon(props) {
@@ -43,7 +42,6 @@ function WorkListPage(props) {
     const {isOpen2, onOpen2, onOpenChange2} = useDisclosure();
     const dates = [];
     var today = new Date(); // 获取当前日期
-    console.log(tomorrow)
 
     function addZero(num) {
         return num < 10 ? '0' + num : num; // 如果小于10，前面补0

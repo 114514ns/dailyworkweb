@@ -5,8 +5,7 @@ import './index.css'
 import {NextUIProvider} from "@nextui-org/react";
 import {BrowserRouter} from "react-router-dom";
 import axios from "axios";
-import md5 from 'js-md5';
-import {toast} from "react-toastify";
+import {md5} from "js-md5";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -58,6 +57,5 @@ function getSign(data) {
     }
     var d = JSON.stringify(varl);
     d = btoa(d) + salt;
-    var u = md5(d)
-    return u
+    return md5(d)
 }

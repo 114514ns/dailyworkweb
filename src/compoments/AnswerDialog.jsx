@@ -20,7 +20,6 @@ function AnswerDialog(props) {
             method: "POST"
         }).then(response => {
             setRes(response.data.data)
-            console.log(response.data.data)
             window.classId = response.data.data.workClass
         })
     }, []);

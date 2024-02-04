@@ -45,6 +45,7 @@
 
 .navBtn {
     margin: 5px;
+    z-index: 9999;
 }
 .appRoot {
     animation-name: logo-spin;
@@ -61,6 +62,7 @@
     height: 95vh;
     position: absolute;
     bottom: 0vh;
+    margin-top: 55px;
     left: 0;
 
 }
@@ -68,10 +70,10 @@
 
 }
 .topNav {
-    height: 5vh;
-    width: 25vw;
+    height: 50vh;
+    width: 100vw;
     position: absolute;
-    margin-top: 5px;
+    margin-left: 30px;
     top: 1vh;
     left: 0;
     display: flex;
@@ -79,7 +81,9 @@
     justify-content: space-between;
     text-align: center;
 }
-
+.hidden {
+    display: none;
+}
 .avatarRoot {
     position: absolute;
     top: 15px;
