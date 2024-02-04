@@ -27,7 +27,7 @@ function AnswerDialog(props) {
     const [clicked, setClicked] = useState(0)
     const [images, setImages] = useState([])
     return (
-        <div className={classes.dialogRoot + ''}>
+        <div className={classes.dialogRoot}>
             <div className={classes.left}>
                 {res && res.submitUser.map((k) => {
                     if (k.submitId) {
@@ -47,7 +47,7 @@ function AnswerDialog(props) {
                     }
                 })}
             </div>
-            <div className={res.cardId?classes.rightExcel:classes.right + ''}>
+            <div className={/*res.cardId?classes.rightExcel:*/classes.right}>
                 {res.cardId ? <iframe
                     src={`https://view.officeapps.live.com/op/view.aspx?src=https://lulu.pprocket.cn/card/${window.classId}and${res.cardId}`}
                     className={classes.excel}></iframe> : images ? images.map(key => {

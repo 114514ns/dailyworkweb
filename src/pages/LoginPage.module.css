@@ -1,4 +1,4 @@
-.root {
+.passwd {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,6 +9,21 @@
     width: 50vw;
     height: 50vh;
 }
+.root {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
 .element {
     margin-top: 15px;
+}
+.qrcode {
+    opacity: 1;
+}
+.qrbin {
+    background: #e0c4c4;
+    margin-left: 50px;
+    border-radius: 15px;
 }
