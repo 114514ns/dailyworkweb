@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import classes from './App.module.css'
 import '/style.css'
 import '/src/dist/output.css'
-import {AnimatePresence, motion, MotionConfig, useMotionValue} from "framer-motion";
+import {AnimatePresence} from "framer-motion";
 import {
     Avatar,
     Dropdown, DropdownItem, DropdownMenu,
@@ -10,15 +10,14 @@ import {
     Link,
     Button
 } from "@nextui-org/react";
-import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
 import WorkListPage from "./pages/WorkListPage.jsx";
-import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {ToastContainer, Zoom} from "react-toastify";
+import "@material/web/button/filled-tonal-button.js";
+
 
 function App() {
-    const [count, setCount] = useState(0)
-
     const items = [
         {
             key: "source",
@@ -40,21 +39,22 @@ function App() {
 
     const location = useLocation();
     const navigate = useNavigate();
+    const navLogin = () => {
+        navigate('/login')
+    }
+    const navList = () => {
+        navigate(`/list/1`)
+    }
     return (
         <>
             <div className='appRoot'>
-                <div className={classes.topNav + `${navigator.userAgent.indexOf('Mobile')===-1?'':classes.hidden}`}>
-                    <div className={''}>
-                        <Button className={classes.navBtn} isBlock={true} href={'/list/1'} as={Link} size={'lg'}
-                                radius={'full'}>
-                            作业&nbsp;
-                        </Button>
-                        <Button className={classes.navBtn} href={'/login'} isBlock={true} as={Link} size={'lg'}
-                                radius={'full'}>
-                            登录
+                <div className={classes.topNav}>
+                    {<div className={''}>
 
-                        </Button>
-                    </div>
+                        <md-filled-tonal-button onClick={navList} class={classes.navBtn}>作业</md-filled-tonal-button>
+                        <md-filled-tonal-button onClick={navLogin} class={classes.navBtn}>登录</md-filled-tonal-button>
+                    </div>}
+
 
                 </div>
                 <ToastContainer
@@ -72,7 +72,7 @@ function App() {
                 />
                 <ToastContainer/>
                 <div className={classes.avatarRoot}>
-                    <Dropdown>
+                    <Dropdown backdrop={"blur"}>
                         <DropdownTrigger>
                             <Avatar src={localStorage.getItem("avatar")} size="lg"
                                     className={classes.avatar}/>
